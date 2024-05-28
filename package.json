@@ -1,21 +1,20 @@
 {
   "name": "koishi-plugin-suicide",
-  "description": "Kill your instance and let daemon restart it.",
-  "version": "0.0.1",
+  "description": "Kill your instance and let daemon restart it",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
     "lib",
     "dist"
   ],
+  "author": "Hieuzest <girkirin@hotmail.com>",
   "license": "MIT",
-  "scripts": {},
   "keywords": [
     "chatbot",
     "koishi",
     "plugin"
   ],
-  "devDependencies": {},
   "peerDependencies": {
     "koishi": "^4.17.4"
   }
