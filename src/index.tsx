@@ -17,6 +17,5 @@ export function apply(ctx: Context) {
     content: <><p><button onClick={suicide}>RESTART</button></p></>,
   })
 
-  ctx.command('suicide', { authority: 4 }).action(({ session }) => console.log(ctx.$commander.get('!交换', session)))
-  console.log(ctx.$commander.get('!交换'))
+  ctx.command('suicide', { authority: 4 }).action(() => suicide())
 }
