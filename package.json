@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-suicide",
   "description": "Kill your instance and let daemon restart it",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -27,7 +27,9 @@
     "yakumo-tsc": "^1.0.0-beta.4"
   },
   "peerDependencies": {
-    "@satorijs/element": "^3.1.7",
     "koishi": "^4.17.8"
+  },
+  "dependencies": {
+    "@satorijs/element": "^3.1.7"
   }
 }
