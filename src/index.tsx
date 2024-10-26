@@ -4,6 +4,7 @@ import { } from '@koishijs/plugin-notifier'
 declare module 'koishi' {
   interface Events {
     'shutdown'(): Awaitable<void>
+    'resurrect'(): Awaitable<void>
   }
 
   interface Context {
@@ -20,28 +21,39 @@ export class ShutdownService extends Service {
     super(ctx, 'shutdown')
 
     const suicide = () => ctx.loader.fullReload()
-    const shutdown = () => this()
 
     ctx.notifier.create({
       type: 'danger',
-      content: <><p><button onClick={suicide}>RESTART</button></p></>,
+      content: <><p>
+        <button onClick={suicide}>SUICIDE</button>
+        <button onClick={() => this()}>RESTART</button>
+      </p></>,
     })
 
     ctx.notifier.create({
-      type: 'danger',
-      content: <><p><button onClick={shutdown}>SHUTDOWN</button></p></>,
+      type: 'primary',
+      content: <><p>
+        <button onClick={() => this.shutdown()}>SHUTDOWN</button>
+        <button onClick={() => this.resurrect()}>RESURRECT</button>
+      </p></>,
     })
 
     ctx.command('suicide', { authority: 4 }).action(suicide)
-    ctx.command('suicide.shutdown', { authority: 4 }).action(shutdown)
+    ctx.command('suicide.restart', { authority: 4 }).action(() => this())
+    ctx.command('suicide.shutdown', { authority: 4 }).action(() => this.shutdown())
+    ctx.command('suicide.resurrect', { authority: 4 }).action(() => this.resurrect())
   }
 
-  async notify() {
+  async resurrect() {
+    return this.ctx.parallel('resurrect')
+  }
+
+  async shutdown() {
     return this.ctx.parallel('shutdown')
   }
 
   async [Service.invoke]() {
-    await this.notify()
+    await this.shutdown()
     this.ctx.get('loader').fullReload()
   }
 }

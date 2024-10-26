@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-suicide",
   "description": "Kill your instance and let daemon restart it",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "type": "module",
   "main": "lib/index.cjs",
   "module": "lib/index.mjs",
