@@ -8,6 +8,7 @@
         - tsc --clean
 - name: yakumo-esbuild
 - name: yakumo-tsc
+- name: yakumo/run
 - name: yakumo/publish
 - name: yakumo/version
 - name: yakumo/upgrade
